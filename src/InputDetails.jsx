@@ -1,8 +1,10 @@
+import { useEffect, useRef } from "react";
+
 
 
 export default function InputDetails({userInput, setUserInput,tasks,settasks}) {
-    
-
+    const firstNameRef = useRef();
+   
     function save(){
         let obj={
             name:userInput,
@@ -15,10 +17,12 @@ export default function InputDetails({userInput, setUserInput,tasks,settasks}) {
         
     }
 
+    useEffect(()=>{firstNameRef.current.focus()},[])
+
   return (
     <>
-    <p>
-            <input className="userInput" type='text' name='inpurValue' value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}/>
+    <p className="userInputWrapper"> 
+            <input ref={firstNameRef} className="userInput" type='text' name='inpurValue' value={userInput} onChange={(e)=>{setUserInput(e.target.value)}}/>
             <button className="addButton" onClick={save}>Add</button>
    
     </p> </>
