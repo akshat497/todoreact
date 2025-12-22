@@ -5,10 +5,13 @@ import Display from './Display'
 export default function App() {
   const [userInput, setUserInput] = useState("")
   const [tasks, settasks] = useState(JSON.parse(localStorage.getItem("tasks"))||[])
+
+
   return (
+   
     <div className='wrapper'>
-      <InputDetails userInput={userInput} setUserInput={setUserInput} tasks={tasks} settasks={settasks}/>
-      <Display tasks={tasks}/>
+      <InputDetails userInput={userInput} setUserInput={setUserInput} tasks={tasks} settasks={settasks} />
+      <Display tasks={tasks} settasks={settasks}/>
     </div>
   )
 }

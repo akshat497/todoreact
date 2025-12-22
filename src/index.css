@@ -14,6 +14,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
  
 }
 .main {
@@ -29,10 +30,12 @@
 }
 .taskWrapper{
   display: flex;
- 
   position: relative;
   padding: 10px;
   margin: 2%;
+  margin-bottom: 20%;
+  
+  
 
 }
 .badge{
@@ -44,5 +47,8 @@
   padding: 5px;
   margin: 1%;
   right: 0;
-  top: 0;
+  top: -35px;
+}
+.task{
+  width: 80px;
 }
