@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InputDetails from './InputDetails'
 import Display from './Display'
+import Counter from './Counter'
 
 export default function App() {
   const [userInput, setUserInput] = useState("")
@@ -12,6 +13,7 @@ export default function App() {
     <div className='wrapper'>
       <InputDetails userInput={userInput} setUserInput={setUserInput} tasks={tasks} settasks={settasks} />
       <Display tasks={tasks} settasks={settasks}/>
+      <Counter/>
     </div>
   )
 }
