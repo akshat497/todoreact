@@ -1,33 +1,52 @@
 import React, { useCallback, useEffect, useState } from "react";
+import Loader from "./Loader";
 
 function User() {
   const [users, setUsers] = useState([]);     // store users
   const [loading, setLoading] = useState(true); // loading state
   const [error, setError] = useState(null);     // error message
 
+
+  function getUsersManually() {
+  return new Promise((resolve, reject) => {
+
+    const users = [
+      { id: 1, name: "Akshat" },
+      { id: 2, name: "Rahul" },
+      { id: 3, name: "Neha" }
+    ];
+
+    const success = true; 
+
+    setTimeout(() => {
+      if (success) {
+        resolve(users);        // ✅ data returned
+      } else {
+        reject("Something went wrong ❌");
+      }
+    }, 1000);
+  });
+}
+ const handleClick = useCallback(() => {
+  console.log("Click");
+}, []);
+
   // async function to fetch users
   async function fetchUsers() {
-    try {
-      setLoading(true);
-      setError(null);
+  try {
+    
 
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
+    const data = await getUsersManually(); // ⏳ waits here
+    setUsers(data);       // ✅ success
 
-      // ❌ handle HTTP errors
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
+  } catch (error) {
+    setError(error);      // ❌ failure
 
-      const data = await response.json();
-      setUsers(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+  } finally {
+    setLoading(false);    // 🧹 always runs
   }
+}
+
 
   // call API when component loads
   useEffect(() => {
@@ -36,31 +55,20 @@ function User() {
 
   // 🔄 loading state
   if (loading) {
-    return <h2>Loading users...</h2>;
+    return <Loader/>;
   }
 
   // ❌ error state
   if (error) {
     return <h2 style={{ color: "red" }}>{error}</h2>;
   }
-const handleClick = useCallback(() => {
-    function (){
-    // simulating heavy logic
-    let sum=0
-    for(let i=0;i<1e8;i++){
-      sum+=i
-    }
-    return sum      
-  }
-},[])
-
-
   
 
-  // ✅ success state
-  return (
+   return (
     <div>
-      <h1>Users List</h1>
+      <h1 >Users List</h1>
+      <button onClick={handleClick}>click me </button>
+      
       <ul>
         {users.map((user) => (
           <li key={user.id}>
