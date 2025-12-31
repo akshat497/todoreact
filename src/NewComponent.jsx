@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-
+import { FaHome ,FaHorse} from "react-icons/fa";
 export default function NewComponent() {
     const [first, setfirst] = React.useState(0)
     const [second, setsecond] = React.useState(0)
@@ -28,7 +28,7 @@ export default function NewComponent() {
 
   return (
     <>
-        <div>{first}</div>
+        <div><FaHome /><FaHorse/> {first}</div>
     <button onClick={() => setfirst(first + 1)}>Increment</button>
         <div>{second}</div>
     <button onClick={() => setsecond(second + 1)}>Increment Second</button>
